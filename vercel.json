@@ -30,12 +30,5 @@
     { "src": "/admin", "dest": "/admin.html" },
     { "src": "/blog", "dest": "/blog.html" },
     { "src": "/(.*)", "dest": "/$1" }
-  ],
-  "env": {
-    "MONGODB_URI": "@mongodb-uri",
-    "JWT_SECRET": "@jwt-secret",
-    "ADMIN_USERNAME": "@admin-username",
-    "ADMIN_PASSWORD": "@admin-password",
-    "GEMINI_API_KEY": "@gemini-api-key"
-  }
+  ]
 }
