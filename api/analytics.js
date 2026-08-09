@@ -13,15 +13,20 @@ module.exports = async function handler(req, res) {
         return res.status(200).end();
     }
 
-    await connectDB();
-
     // ── POST: Track a page view (public, called from frontend) ──
     if (req.method === 'POST') {
         try {
+            await connectDB();
+            let body = req.body;
+            if (typeof body === 'string') {
+                try { body = JSON.parse(body); } catch (e) { body = {}; }
+            }
+            body = body || {};
+
             const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
             const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
             const userAgent = req.headers['user-agent'] || 'unknown';
-            const referrer = req.body.referrer || 'direct';
+            const referrer = body.referrer || 'direct';
 
             // Create a hash for visitor uniqueness (privacy-friendly, no raw IP stored)
             const visitorHash = crypto

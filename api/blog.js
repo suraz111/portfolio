@@ -12,11 +12,10 @@ module.exports = async function handler(req, res) {
         return res.status(200).end();
     }
 
-    await connectDB();
-
     // ── GET: List blog posts ──
     if (req.method === 'GET') {
         try {
+            await connectDB();
             const { id, slug, all } = req.query;
 
             // Get single post by ID or slug
@@ -58,7 +57,14 @@ module.exports = async function handler(req, res) {
         if (!auth) return;
 
         try {
-            const { title, slug, content, excerpt, published } = req.body;
+            await connectDB();
+            let body = req.body;
+            if (typeof body === 'string') {
+                try { body = JSON.parse(body); } catch (e) { body = {}; }
+            }
+            body = body || {};
+
+            const { title, slug, content, excerpt, published } = body;
 
             if (!title || !content) {
                 return res.status(400).json({ error: 'Title and content are required.' });
@@ -92,10 +98,17 @@ module.exports = async function handler(req, res) {
         if (!auth) return;
 
         try {
+            await connectDB();
             const { id } = req.query;
             if (!id) return res.status(400).json({ error: 'Post ID is required.' });
 
-            const updateData = { ...req.body, updatedAt: Date.now() };
+            let body = req.body;
+            if (typeof body === 'string') {
+                try { body = JSON.parse(body); } catch (e) { body = {}; }
+            }
+            body = body || {};
+
+            const updateData = { ...body, updatedAt: Date.now() };
             const updated = await BlogPost.findByIdAndUpdate(id, updateData, {
                 new: true,
                 runValidators: true
@@ -115,6 +128,7 @@ module.exports = async function handler(req, res) {
         if (!auth) return;
 
         try {
+            await connectDB();
             const { id } = req.query;
             if (!id) return res.status(400).json({ error: 'Post ID is required.' });
 

@@ -12,11 +12,10 @@ module.exports = async function handler(req, res) {
         return res.status(200).end();
     }
 
-    await connectDB();
-
     // ── GET: List all projects (public) ──
     if (req.method === 'GET') {
         try {
+            await connectDB();
             const { id } = req.query;
 
             if (id) {
@@ -43,7 +42,14 @@ module.exports = async function handler(req, res) {
         if (!auth) return;
 
         try {
-            const { title, description, imageUrl, tags, projectUrl, order, featured } = req.body;
+            await connectDB();
+            let body = req.body;
+            if (typeof body === 'string') {
+                try { body = JSON.parse(body); } catch (e) { body = {}; }
+            }
+            body = body || {};
+
+            const { title, description, imageUrl, tags, projectUrl, order, featured } = body;
 
             if (!title || !description) {
                 return res.status(400).json({ error: 'Title and description are required.' });

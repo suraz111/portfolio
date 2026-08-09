@@ -18,7 +18,13 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-        const { username, password } = req.body;
+        let body = req.body;
+        if (typeof body === 'string') {
+            try { body = JSON.parse(body); } catch (e) { body = {}; }
+        }
+        body = body || {};
+
+        const { username, password } = body;
 
         if (!username || !password) {
             return res.status(400).json({ error: 'Username and password are required.' });

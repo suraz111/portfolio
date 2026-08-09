@@ -1288,7 +1288,7 @@ function initContactForm() {
                 body: JSON.stringify({ name, email, message })
             });
 
-            const data = await res.json();
+            const data = await res.json().catch(() => ({}));
 
             if (res.ok && data.success) {
                 // Success feedback
@@ -1300,20 +1300,23 @@ function initContactForm() {
                     submitBtn.innerHTML = originalText;
                     submitBtn.style.background = '';
                     submitBtn.disabled = false;
-                }, 3000);
+                }, 3500);
             } else {
-                throw new Error(data.error || 'Failed to send message.');
+                throw new Error(data.error || 'Failed to send message. Please try again.');
             }
         } catch (err) {
-            submitBtn.innerHTML = 'Error — try again <span class="material-symbols-outlined">error</span>';
+            console.error('Contact form submission error:', err);
+            const isDbErr = err.message && (err.message.includes('Database') || err.message.includes('MONGODB_URI'));
+            submitBtn.innerHTML = isDbErr 
+                ? 'DB connecting — try again <span class="material-symbols-outlined">sync_problem</span>' 
+                : 'Error — try again <span class="material-symbols-outlined">error</span>';
             submitBtn.style.background = '#ef4444';
 
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
                 submitBtn.style.background = '';
                 submitBtn.disabled = false;
-            }, 3000);
-            console.error('Contact form error:', err);
+            }, 3500);
         }
     });
 }
