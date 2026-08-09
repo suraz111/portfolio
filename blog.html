@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Blog by Suraj — Thoughts on AI, data science, web development, and engineering insights.">
+    <title>Blog | Suraj</title>
+
+    <!-- Google Fonts (same as main site) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <!-- Core Design System (inherits all CSS variables & base styles) -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Blog-specific styles -->
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body class="blog-page antialiased">
+
+    <!-- Particle canvas background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Ambient glowing light blobs -->
+    <div class="ambient-light ambient-light-1"></div>
+    <div class="ambient-light ambient-light-2"></div>
+    <div class="ambient-light ambient-light-3"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="/" class="logo" id="nav-logo">
+                <span class="logo-txt"><span class="logo-eng">SURAJ</span><span class="logo-slash">/</span><span
+                        class="logo-nep">सुरज</span></span> <span class="logo-dot"></span>
+            </a>
+
+            <a href="/" class="nav-back-link">
+                <span class="material-symbols-outlined">arrow_back</span>
+                <span>Portfolio</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+       Blog List View
+       ========================================== -->
+    <div class="blog-list-view" id="blog-list-view">
+
+        <!-- Blog Hero Header -->
+        <section class="blog-hero">
+            <div class="container">
+                <span class="section-num blog-fade-in">// JOURNAL</span>
+                <h1 class="blog-hero-title blog-fade-in blog-fade-in-delay-1">Engineering Notes</h1>
+                <p class="blog-hero-desc blog-fade-in blog-fade-in-delay-2">
+                    Thoughts on software architecture, AI experiments, web systems, and lessons learned from the
+                    terminal.
+                </p>
+                <div class="blog-post-count blog-fade-in blog-fade-in-delay-3" id="blog-post-count"
+                    style="display: none;">
+                    <span class="material-symbols-outlined">article</span>
+                    <span id="post-count-text">0 posts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="blog-grid-section">
+            <div class="container">
+                <div class="blog-posts-grid" id="blog-posts-grid">
+                    <!-- Loading Skeleton Cards -->
+                    <div class="blog-skeleton-card">
+                        <div class="skeleton-bar skeleton-accent"></div>
+                        <div class="skeleton-bar skeleton-date"></div>
+                        <div class="skeleton-bar skeleton-title"></div>
+                        <div class="skeleton-bar skeleton-title-2"></div>
+                        <div class="skeleton-bar skeleton-line"></div>
+                        <div class="skeleton-bar skeleton-line"></div>
+                        <div class="skeleton-bar skeleton-line-short"></div>
+                        <div class="skeleton-bar skeleton-btn"></div>
+                    </div>
+                    <div class="blog-skeleton-card">
+                        <div class="skeleton-bar skeleton-accent"></div>
+                        <div class="skeleton-bar skeleton-date"></div>
+                        <div class="skeleton-bar skeleton-title"></div>
+                        <div class="skeleton-bar skeleton-title-2"></div>
+                        <div class="skeleton-bar skeleton-line"></div>
+                        <div class="skeleton-bar skeleton-line"></div>
+                        <div class="skeleton-bar skeleton-line-short"></div>
+                        <div class="skeleton-bar skeleton-btn"></div>
+                    </div>
+                    <div class="blog-skeleton-card">
+                        <div class="skeleton-bar skeleton-accent"></div>
+                        <div class="skeleton-bar skeleton-date"></div>
+                        <div class="skeleton-bar skeleton-title"></div>
+                        <div class="skeleton-bar skeleton-title-2"></div>
+                        <div class="skeleton-bar skeleton-line"></div>
+                        <div class="skeleton-bar skeleton-line"></div>
+                        <div class="skeleton-bar skeleton-line-short"></div>
+                        <div class="skeleton-bar skeleton-btn"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==========================================
+       Single Post View
+       ========================================== -->
+    <div class="blog-single-view" id="blog-single-view">
+
+        <!-- Post Header -->
+        <section class="post-header">
+            <div class="container">
+                <button class="post-back-btn" id="post-back-btn">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    All Posts
+                </button>
+
+                <div class="post-meta-row" id="post-meta-row">
+                    <!-- Filled by JS -->
+                </div>
+
+                <h1 class="post-title" id="post-title"></h1>
+            </div>
+        </section>
+
+        <!-- Post Content Reading Pane -->
+        <section class="post-content-wrapper">
+            <div class="container">
+                <div class="post-content-card">
+                    <div class="post-prose" id="post-prose">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="blog-footer">
+        <div class="container footer-content">
+            <div class="copyright">
+                © 2026 Suraj. Crafted with passion and love.
+            </div>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/suraj-t-b942812b5" target="_blank"
+                    class="footer-link">LinkedIn</a>
+                <a href="https://github.com/suraz111" target="_blank" class="footer-link">GitHub</a>
+                <a href="mailto:thakursuraz7@gmail.com" class="footer-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="blog-scroll-top" id="blog-scroll-top" aria-label="Scroll to top">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <!-- Theme Swatch Bar -->
+    <div class="color-bar-panel" id="color-bar">
+        <div class="color-bar-label">
+            <span class="material-symbols-outlined" style="font-size: 0.95rem;">palette</span>
+            <span>Theme</span>
+        </div>
+        <button class="swatch-btn active" data-theme="default" title="Pastel Rose"
+            style="background: linear-gradient(135deg, #f4f5f7, #db2777);"></button>
+        <button class="swatch-btn" data-theme="nebula" title="Retro Vibes"
+            style="background: linear-gradient(135deg, #0b0914, #fef08a);"></button>
+        <button class="swatch-btn" data-theme="void" title="Void Black"
+            style="background: linear-gradient(135deg, #000000, #ffffff);"></button>
+    </div>
+
+    <!-- Blog Logic Script -->
+    <script src="blog.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "suraj-portfolio",
+  "version": "1.0.0",
+  "description": "Suraj's Portfolio — Full-Stack with Node.js, Express & MongoDB",
+  "private": true,
+  "scripts": {
+    "dev": "npx vercel dev",
+    "start": "npx vercel dev"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
