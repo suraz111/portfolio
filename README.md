@@ -212,7 +212,7 @@ Visit the application in your browser:
 ## 👤 Author & Connect
 
 **Suraj**
-- **Website:** [Portfolio Live](https://suraj-portfolio.vercel.app)
+
 - **GitHub:** [@suraz111](https://github.com/suraz111)
 - **LinkedIn:** [Suraj](https://www.linkedin.com/in/suraj-t-b942812b5)
 - **Email:** [thakursuraz7@gmail.com](mailto:thakursuraz7@gmail.com)
