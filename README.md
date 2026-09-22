@@ -214,6 +214,7 @@ Visit the application in your browser:
 **Suraj**
 
 - **GitHub:** [@suraz111](https://github.com/suraz111)
+- portfolio:https://suuportfolio-g25o.vercel.app/
 - **LinkedIn:** [Suraj](https://www.linkedin.com/in/suraj-t-b942812b5)
 - **Email:** [thakursuraz7@gmail.com](mailto:thakursuraz7@gmail.com)
 
